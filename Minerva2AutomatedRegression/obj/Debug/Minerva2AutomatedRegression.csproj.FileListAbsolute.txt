@@ -1,0 +1,6 @@
+D:\VS Projects\Minerva2AutomatedRegression\Minerva2AutomatedRegression\obj\Debug\Minerva2AutomatedRegression.csprojResolveAssemblyReference.cache
+D:\VS Projects\Minerva2AutomatedRegression\Minerva2AutomatedRegression\obj\Debug\Minerva2AutomatedRegression.csproj.CoreCompileInputs.cache
+D:\VS Projects\Minerva2AutomatedRegression\Minerva2AutomatedRegression\bin\Debug\Minerva2AutomatedRegression.dll
+D:\VS Projects\Minerva2AutomatedRegression\Minerva2AutomatedRegression\bin\Debug\Minerva2AutomatedRegression.pdb
+D:\VS Projects\Minerva2AutomatedRegression\Minerva2AutomatedRegression\obj\Debug\Minerva2AutomatedRegression.dll
+D:\VS Projects\Minerva2AutomatedRegression\Minerva2AutomatedRegression\obj\Debug\Minerva2AutomatedRegression.pdb

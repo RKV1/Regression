@@ -16,7 +16,7 @@ namespace Minerva2AutomatedRegression
     {
         public static void Execute()
         {
-
+            //Playback settings
             Playback.PlaybackSettings.WaitForReadyTimeout = Configurations.SyncTime;
             Playback.PlaybackSettings.SearchTimeout = Configurations.SyncTime;
             Playback.PlaybackSettings.WaitForReadyLevel = WaitForReadyLevel.UIThreadOnly;

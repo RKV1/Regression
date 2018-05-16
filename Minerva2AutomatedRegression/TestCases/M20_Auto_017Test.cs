@@ -11,7 +11,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Minerva2AutomatedRegression
 {
-    class M20_Auto_006Test
+    class M20_Auto_017Test
     {
         public static void Execute()
         {
@@ -25,6 +25,7 @@ namespace Minerva2AutomatedRegression
 
             LoginScreen lsobj = new LoginScreen(TC_002_bw);
             HomePage hpobj = new HomePage(TC_002_bw);
+            RelocationScreen rlsobj = new RelocationScreen(TC_002_bw);
 
             try
             {
@@ -61,13 +62,8 @@ namespace Minerva2AutomatedRegression
             try
             {
                 hpobj.PropertyType.WaitForControlExist(Configurations.SyncTime);
-                Mouse.Click(hpobj.PropertyType);
-                Playback.Wait(500);
-                Keyboard.SendKeys("{TAB}");
-                Playback.Wait(500);
-                Keyboard.SendKeys(TestData.M20_Auto_004_005_PropertyTypeValue);
-                Console.WriteLine("Entered Property Type as " + TestData.M20_Auto_004_005_PropertyTypeValue);
 
+                TestData.M20_Auto_004_005_PropertyPhaseValue = "Relocation";
                 Mouse.Click(hpobj.PropertyPhase);
                 Playback.Wait(500);
                 Keyboard.SendKeys("{TAB}");
@@ -75,23 +71,11 @@ namespace Minerva2AutomatedRegression
                 Keyboard.SendKeys(TestData.M20_Auto_004_005_PropertyPhaseValue);
                 Console.WriteLine("Entered Property Phase as " + TestData.M20_Auto_004_005_PropertyPhaseValue);
 
-                Mouse.Click(hpobj.PropertyStatus);
-                Playback.Wait(500);
-                Keyboard.SendKeys("{TAB}");
-                Playback.Wait(500);
-                Keyboard.SendKeys(TestData.M20_Auto_004_005_PropertyStatusValue);
-                Console.WriteLine("Entered Property Status as " + TestData.M20_Auto_004_005_PropertyStatusValue);
-
-                Mouse.Click(hpobj.AssetType);
-                Playback.Wait(500);
-                Keyboard.SendKeys("{TAB}");
-                Playback.Wait(500);
-                Keyboard.SendKeys(TestData.M20_Auto_004_005_AssetTypeValue);
-                Console.WriteLine("Entered Asset Type as " + TestData.M20_Auto_004_005_AssetTypeValue);
 
                 Mouse.Click(hpobj.SearchButton);
                 Playback.Wait(5000);
                 Console.WriteLine("Clicked on Search Button");
+
                 Playback.PlaybackSettings.WaitForReadyLevel = WaitForReadyLevel.AllThreads;
 
                 Mouse.Click(hpobj.PropertyPhase);
@@ -99,7 +83,7 @@ namespace Minerva2AutomatedRegression
                 Keyboard.SendKeys("^{END}");
 
 
-               
+
                 int RecordCount = Int32.Parse(hpobj.PaginationText.InnerText.Trim().Split('-')[0].Trim());
                 if (RecordCount == 0)
                 {
@@ -109,39 +93,33 @@ namespace Minerva2AutomatedRegression
                 {
                     Console.WriteLine("Clicking on Search button has displayed records");
                 }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
-                String value1 = hpobj.PaginationText.InnerText.Trim();
-                String value2 = value1.Split(new string[] { "of" }, StringSplitOptions.None)[0].Trim();
-                int itemsperpage = Int32.Parse(value2.Split('-')[1].Trim());
-                String value3 = value1.Split(new string[] { "of" }, StringSplitOptions.None)[1].Trim();
-                value3 = value3.Split(new string[] { "items" }, StringSplitOptions.None)[0].Trim();
-                int totalcount = Int32.Parse(value3);
-                int totalpages;
-                if (totalcount % itemsperpage == 0)
+            
+            hpobj.RelocationPhaseCellLink.WaitForControlExist(Configurations.SyncTime);
+            try
+            {
+
+                var pid = hpobj.PIDTableCell.InnerText.Trim();
+                Mouse.Click(hpobj.RelocationPhaseCellLink);
+                Console.WriteLine("Clicked on FIrst Relocation link");
+                Keyboard.SendKeys("^{HOME}");
+                rlsobj.RelocationHeader.WaitForControlExist(Configurations.SyncTime);
+                Console.WriteLine("Relocation Page is displayed");
+                if (rlsobj.GeneralInfoHeader.Exists)
                 {
-                    totalpages = totalcount / itemsperpage;
+                    Console.WriteLine("Relocation Tab is selected by default");
                 }
                 else
                 {
-                    totalpages = (totalcount / itemsperpage) + 1;
+                   Assert.Fail("Relocation Tab is not selected by default");
                 }
-                Mouse.Click(hpobj.LastPageArrow);
-                Console.WriteLine("Clicked on last page image");
-                if (hpobj.PageSelected.InnerText.Trim() == totalpages.ToString())
-                {
-                    Console.WriteLine("Page no." + totalpages.ToString() + " was selected as expected");
-                }
-                else
-                {
-                    Console.WriteLine("Expected Page to be displayed: " + totalpages.ToString());
-                    Console.WriteLine("Actual Page displayed: " + hpobj.PageSelected.InnerText.Trim());
-                    Assert.Fail("Pagination is not working properly");
-                }
-
-
-
-
-
+                
+                //Console.WriteLine(rlsobj.RelocationTab.InnerText);
 
 
             }
@@ -150,6 +128,7 @@ namespace Minerva2AutomatedRegression
 
                 throw;
             }
+
         }
     }
 }

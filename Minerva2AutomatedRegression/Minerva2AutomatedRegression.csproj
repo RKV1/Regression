@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -58,23 +59,59 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodedUITest1.cs" />
-    <Compile Include="CommonMethods\Login.cs" />
-    <Compile Include="M20_Auto_007Test.cs" />
+    <Compile Include="CommonMethods\Login.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="TestCases\M20_Auto_026Test.cs" />
+    <Compile Include="ObjectRepository\PropertyDetails.cs" />
+    <Compile Include="TestCases\M20_Auto_027Test.cs" />
+    <Compile Include="TestCases\M20_Auto_025Test.cs" />
+    <Compile Include="TestCases\M20_Auto_008Test.cs" />
+    <Compile Include="TestCases\M20_Auto_017Test.cs" />
+    <Compile Include="TestCases\M20_Auto_021Test.cs" />
+    <Compile Include="ObjectRepository\RehabScreen.cs" />
+    <Compile Include="ObjectRepository\RelocationReport.cs" />
+    <Compile Include="ObjectRepository\RelocationScreen.cs" />
+    <Compile Include="TestCases\M20_Auto_007Test.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
-    <Compile Include="TestCases\M20_Auto_006Test.cs" />
-    <Compile Include="TestCases\M20_Auto_004_005Test.cs" />
-    <Compile Include="TestCases\M20_Auto_003_005Test.cs" />
-    <Compile Include="TestCases\M20_Auto_001Test.cs" />
-    <Compile Include="TestCases\M20_Auto_002Test.cs" />
-    <Compile Include="ObjectRepository\HomePage.cs" />
-    <Compile Include="Miscellaneous\Configurations.cs" />
-    <Compile Include="Miscellaneous\LoginCredentials.cs" />
-    <Compile Include="ObjectRepository\LoginScreen.cs" />
+    <Compile Include="TestCases\M20_Auto_006Test.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="TestCases\M20_Auto_004_005Test.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="TestCases\M20_Auto_003_005Test.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="TestCases\M20_Auto_001Test.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="TestCases\M20_Auto_002Test.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="ObjectRepository\HomePage.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Miscellaneous\Configurations.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Miscellaneous\LoginCredentials.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="ObjectRepository\LoginScreen.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CommonMethods\TestInitiate.cs" />
-    <Compile Include="Miscellaneous\TestData.cs" />
+    <Compile Include="CommonMethods\TestInitiate.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Miscellaneous\TestData.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="UIMap.cs" />
   </ItemGroup>
   <ItemGroup>

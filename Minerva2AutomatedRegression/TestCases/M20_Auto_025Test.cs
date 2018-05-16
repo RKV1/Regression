@@ -4,18 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UITest;
+using Microsoft.VisualStudio.TestTools.UITest.Extension;
 using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Minerva2AutomatedRegression
 {
-    class M20_Auto_002Test
+    class M20_Auto_025Test
     {
         public static void Execute()
         {
             Playback.PlaybackSettings.WaitForReadyTimeout = Configurations.SyncTime;
             Playback.PlaybackSettings.SearchTimeout = Configurations.SyncTime;
+            Playback.PlaybackSettings.WaitForReadyLevel = WaitForReadyLevel.UIThreadOnly;
 
             BrowserWindow.CurrentBrowser = Configurations.BrowserName;
             BrowserWindow TC_002_bw = BrowserWindow.Launch(new Uri(Configurations.MainUrl));
@@ -53,30 +55,46 @@ namespace Minerva2AutomatedRegression
                 throw;
             }
 
+
+            
+
             try
             {
-                string ExpMsg = "RAVI VALLEPU";
-                string ActMsg = hpobj.Loggedinusername.InnerText.Trim();
-                if (ExpMsg == ActMsg)
+                hpobj.SearchbyAddress.WaitForControlExist(Configurations.SyncTime);
+                Console.WriteLine("Search By Address field is displyed. 'Property Search' search criteria is expanded.");
+                Mouse.Click(hpobj.PropertySearchLink);
+                Console.WriteLine("Clicked on Property Search Link");
+               if (hpobj.SearchbyAddress.Width == 0 && hpobj.SearchbyAddress.Height == 0)
                 {
-                    Console.WriteLine("Values matched");
-                    Console.WriteLine("Expected Message: " + ExpMsg);
-                    Console.WriteLine("Actual Message: " + ActMsg);
+                    Console.WriteLine("Search By Address field is not displayed. 'Property Search' search criteria is collapsed.");
                 }
                 else
                 {
-                    Console.WriteLine("Expected Message: " + ExpMsg);
-                    Console.WriteLine("Actual Message: " + ActMsg);
-                    Assert.Fail("Values did not match");
+                    Assert.Fail("Search By Address field is not displayed. 'Property Search' search criteria is not collapsed.");
                 }
 
-
+                
+                Mouse.Click(hpobj.PropertySearchLink);
+                if (hpobj.PropertyType.Height ==0 && hpobj.PropertyType.Width == 0)
+                {
+                    Console.WriteLine("Property Type label is not displayed. 'Detailed Search' search criteria is collapsed");
+                }else
+                {
+                    Assert.Fail("Property Type label is displayed. 'Detailed Search' search criteria is not collapsed");
+                }
+                
+                Mouse.Click(hpobj.DetaieldSearchLink);
+                Console.WriteLine("Clicked on Detailed Search Link");
+                hpobj.PropertyType.WaitForControlExist(Configurations.SyncTime);
+                Console.WriteLine("Property Type Label is displayed. 'Detailed Search' search criteria is expanded");
             }
             catch (Exception)
             {
 
                 throw;
             }
+
+           
 
         }
     }

@@ -8,13 +8,20 @@ using Microsoft.VisualStudio.TestTools.UITest.Extension;
 using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
+using System.Diagnostics;
+using System.Windows.Forms;
+
 
 namespace Minerva2AutomatedRegression
 {
-    class M20_Auto_006Test
+    class M20_Auto_007Test
     {
         public static void Execute()
         {
+
+            
+            
 
             Playback.PlaybackSettings.WaitForReadyTimeout = Configurations.SyncTime;
             Playback.PlaybackSettings.SearchTimeout = Configurations.SyncTime;
@@ -92,14 +99,14 @@ namespace Minerva2AutomatedRegression
                 Mouse.Click(hpobj.SearchButton);
                 Playback.Wait(5000);
                 Console.WriteLine("Clicked on Search Button");
-                Playback.PlaybackSettings.WaitForReadyLevel = WaitForReadyLevel.AllThreads;
 
+                Playback.PlaybackSettings.WaitForReadyLevel = WaitForReadyLevel.AllThreads;
                 Mouse.Click(hpobj.PropertyPhase);
                 Playback.Wait(500);
                 Keyboard.SendKeys("^{END}");
 
 
-               
+
                 int RecordCount = Int32.Parse(hpobj.PaginationText.InnerText.Trim().Split('-')[0].Trim());
                 if (RecordCount == 0)
                 {
@@ -110,38 +117,23 @@ namespace Minerva2AutomatedRegression
                     Console.WriteLine("Clicking on Search button has displayed records");
                 }
 
-                String value1 = hpobj.PaginationText.InnerText.Trim();
-                String value2 = value1.Split(new string[] { "of" }, StringSplitOptions.None)[0].Trim();
-                int itemsperpage = Int32.Parse(value2.Split('-')[1].Trim());
-                String value3 = value1.Split(new string[] { "of" }, StringSplitOptions.None)[1].Trim();
-                value3 = value3.Split(new string[] { "items" }, StringSplitOptions.None)[0].Trim();
-                int totalcount = Int32.Parse(value3);
-                int totalpages;
-                if (totalcount % itemsperpage == 0)
+                Mouse.Click(hpobj.ExportToExcel);
+                Console.WriteLine("Clicked on Export to Excel option");
+                Playback.Wait(10000);
+                
+               String filename = "PropertySearch.xlsx";
+               FileInfo  f = new FileInfo(filename);
+               String fullname = f.FullName;
+
+                if (Directory.Exists(Path.GetDirectoryName(fullname)))
                 {
-                    totalpages = totalcount / itemsperpage;
+
+                    Console.WriteLine("Results are exported to excel file");
                 }
                 else
                 {
-                    totalpages = (totalcount / itemsperpage) + 1;
+                    Assert.Fail("Results are not exported to excel file");
                 }
-                Mouse.Click(hpobj.LastPageArrow);
-                Console.WriteLine("Clicked on last page image");
-                if (hpobj.PageSelected.InnerText.Trim() == totalpages.ToString())
-                {
-                    Console.WriteLine("Page no." + totalpages.ToString() + " was selected as expected");
-                }
-                else
-                {
-                    Console.WriteLine("Expected Page to be displayed: " + totalpages.ToString());
-                    Console.WriteLine("Actual Page displayed: " + hpobj.PageSelected.InnerText.Trim());
-                    Assert.Fail("Pagination is not working properly");
-                }
-
-
-
-
-
 
 
             }
@@ -150,6 +142,7 @@ namespace Minerva2AutomatedRegression
 
                 throw;
             }
+            
         }
     }
 }

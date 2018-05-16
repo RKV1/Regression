@@ -39,6 +39,24 @@ namespace Minerva2AutomatedRegression
         [TestMethod]
         public void M20_Auto_007_Test() { M20_Auto_007Test.Execute(); }
 
+        [TestMethod]
+        public void M20_Auto_008_Test() { M20_Auto_008Test.Execute(); }
+
+        [TestMethod]
+        public void M20_Auto_017_Test() { M20_Auto_017Test.Execute(); }
+
+        /*[TestMethod]
+         public void M20_Auto_021_Test() { M20_Auto_021Test.Execute(); }
+         */
+
+        [TestMethod]
+        public void M20_Auto_025_Test()  {  M20_Auto_025Test.Execute();  }
+
+        [TestMethod]
+        public void M20_Auto_026_Test() { M20_Auto_026Test.Execute(); }
+
+        [TestMethod]
+        public void M20_Auto_027_Test() { M20_Auto_027Test.Execute(); }
         #region Additional test attributes
 
         // You can use the following additional attributes as you write your tests:

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UITest;
+using Microsoft.VisualStudio.TestTools.UITest.Extension;
 using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -35,12 +36,14 @@ namespace Minerva2AutomatedRegression
             try
             {
                 lsobj.UserName.WaitForControlExist(Configurations.SyncTime);
-                lsobj.UserName.Text = LoginCredentials.UserName;
+                /*lsobj.UserName.Text = LoginCredentials.UserName;
                 Console.WriteLine("Entered username as " + LoginCredentials.UserName);
                 lsobj.Password.Text = LoginCredentials.Password;
                 Console.WriteLine("Entered password");
                 Mouse.Click(lsobj.LoginButton);
                 Console.WriteLine("Clicked on Login button");
+                */
+                Login.LoginToApplication(TC_002_bw, LoginCredentials.UserName, LoginCredentials.Password);
             }
             catch (Exception)
             {
@@ -97,6 +100,7 @@ namespace Minerva2AutomatedRegression
                 Playback.Wait(5000);
                 Console.WriteLine("Clicked on Search Button");
 
+                Playback.PlaybackSettings.WaitForReadyLevel = WaitForReadyLevel.AllThreads;
                 Mouse.Click(hpobj.PropertyPhase);
                 Playback.Wait(500);
                 Keyboard.SendKeys("^{END}");
